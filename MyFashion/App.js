@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from './src/screens/HomeScreen';
+import ProductListScreen from './src/screens/ProductListScreen';
+import ProductDetailScreen from './src/screens/ProductDetailScreen';
+import CheckoutScreen from './src/screens/CheckoutScreen';
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} options={{ title: 'Open Fashion' }} />
+        <Drawer.Screen name="ProductList" component={ProductListScreen} options={{ title: 'Products' }} />
+        <Drawer.Screen name="ProductDetail" component={ProductDetailScreen} options={{ title: 'Product Detail' }} />
+        <Drawer.Screen name="Checkout" component={CheckoutScreen} options={{ title: 'Checkout' }} />
+      </Drawer.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

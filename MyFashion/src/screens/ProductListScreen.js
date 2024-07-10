@@ -1,16 +1,16 @@
-// src/screens/ProductListScreen.js
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Button } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const products = [
-  { id: '1', name: 'Office Wear', price: '$120', image: require('../../assets/office_wear.jpg') },
-  { id: '2', name: 'Black', price: '$120', image: require('../../assets/black.jpg') },
-  { id: '3', name: 'Church Wear', price: '$120', image: require('../../assets/church_wear.jpg') },
-  { id: '4', name: 'Lamerei', price: '$120', image: require('../../assets/lamerei.jpg') },
-  { id: '5', name: '21WN', price: '$120', image: require('../../assets/21wn.jpg') },
-  { id: '6', name: 'Lopo', price: '$120', image: require('../../assets/lopo.jpg') },
-  { id: '7', name: 'Lane', price: '$120', image: require('../../assets/lane.jpg') },
+  { id: '1', name: 'Office Wear', price: '$120', image: require('../../assets/dress1.png') },
+  { id: '2', name: 'Black', price: '$120', image: require('../../assets/dress2.png') },
+  { id: '3', name: 'Church Wear', price: '$120', image: require('../../assets/dress3.png') },
+  { id: '4', name: 'Lamerei', price: '$120', image: require('../../assets/dress4.png') },
+  { id: '5', name: '21WN', price: '$120', image: require('../../assets/dress5.png') },
+  { id: '6', name: 'Lopo', price: '$120', image: require('../../assets/dress6.png') },
+  { id: '7', name: 'Lane', price: '$120', image: require('../../assets/dress7.png') },
 ];
 
 const ProductListScreen = ({ route }) => {
@@ -31,7 +31,12 @@ const ProductListScreen = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{category}</Text>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Ionicons name="menu" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.title}>{category}</Text>
+      </View>
       <FlatList
         data={products}
         renderItem={renderProduct}
@@ -54,11 +59,17 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     backgroundColor: '#fff',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    marginBottom: 20,
+  },
   title: {
+    flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
   },
   row: {
     justifyContent: 'space-between',

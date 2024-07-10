@@ -4,9 +4,9 @@ import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from 'react
 import { useNavigation } from '@react-navigation/native';
 
 const cartItems = [
-  { id: '1', name: 'Office Wear', description: 'Office wear for you office', price: '$120', image: require('../../assets/office_wear.jpg') },
-  { id: '2', name: 'Lamerei', description: 'Recycle Boucle Knit Cardigan Pink', price: '$120', image: require('../../assets/lamerei.jpg') },
-  { id: '3', name: 'Church Wear', description: 'Recycle Boucle Knit Cardigan Pink', price: '$120', image: require('../../assets/church_wear.jpg') },
+  { id: '1', name: 'Office Wear', description: 'Office wear for you office', price: '$120', image: require('../../assets/dress1.png') },
+  { id: '2', name: 'Lamerei', description: 'Recycle Boucle Knit Cardigan Pink', price: '$120', image: require('../../assets/dress2.png') },
+  { id: '3', name: 'Church Wear', description: 'Recycle Boucle Knit Cardigan Pink', price: '$120', image: require('../../assets/dress3.png') },
 ];
 
 const CheckoutScreen = () => {
