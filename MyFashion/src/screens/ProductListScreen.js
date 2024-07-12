@@ -1,7 +1,7 @@
+// src/screens/ProductListScreen.js
 import React from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
 
 const products = [
   { id: '1', name: 'Office Wear', price: '$120', image: require('../../assets/dress1.png') },
@@ -22,20 +22,30 @@ const ProductListScreen = ({ route }) => {
       <Image source={item.image} style={styles.image} />
       <Text style={styles.name}>{item.name}</Text>
       <Text style={styles.price}>{item.price}</Text>
-      <Button
-        title="View Details"
-        onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}
-      />
     </View>
   );
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Ionicons name="menu" size={24} color="black" />
+        <TouchableOpacity style={styles.menuButton}>
+      
         </TouchableOpacity>
+        <Image source={require('../../assets/Logo.png')} style={styles.logo} />
+        <View style={styles.icons}>
+          <TouchableOpacity>
+            <Image source={require('../../assets/Search.png')} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={require('../../assets/shoppingBag.png')} style={styles.icon} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.titleRow}>
         <Text style={styles.title}>{category}</Text>
+        <TouchableOpacity>
+          <Image source={require('../../assets/Listview.png')} style={styles.listviewIcon} />
+        </TouchableOpacity>
       </View>
       <FlatList
         data={products}
@@ -44,11 +54,12 @@ const ProductListScreen = ({ route }) => {
         numColumns={2}
         columnWrapperStyle={styles.row}
       />
-      <Button
-        title="Go to Checkout"
+      <TouchableOpacity
         onPress={() => navigation.navigate('Checkout')}
         style={styles.checkoutButton}
-      />
+      >
+        <Text style={styles.checkoutButtonText}>Go to Checkout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -62,14 +73,45 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    justifyContent: 'space-between',
     marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  menuButton: {
+    paddingRight: 15,
+  },
+  logo: {
+    flex: 1,
+    width: 100,
+    height: 30,
+    resizeMode: 'contain',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+  icons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    marginLeft: 15,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    paddingHorizontal: 10,
   },
   title: {
-    flex: 1,
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
+    textAlign: 'left',
+  },
+  listviewIcon: {
+    width: 24,
+    height: 24,
   },
   row: {
     justifyContent: 'space-between',
@@ -103,6 +145,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 5,
     marginTop: 20,
+    alignSelf: 'center',
+  },
+  checkoutButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
